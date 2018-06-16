@@ -1,10 +1,15 @@
-FROM alpine:3.7
-LABEL maintainer="jbbodart@yahoo.com"
+FROM hypriot/rpi-alpine-scratch
+LABEL maintainer="florian.drevet@gmail.com"
 
 ENV REFRESH_INTERVAL=600
 ENV SET_IPV4="yes"
 ENV SET_IPV6="no"
 ENV TTL=300
+
+RUN apk update && \
+apk upgrade && \
+apk add bash && \
+rm -rf /var/cache/apk/*
 
 RUN apk add --no-cache curl openssl bind-tools
 
